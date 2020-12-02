@@ -1,5 +1,5 @@
 FROM nginx
-LABEL maintainer="Elliot Saba <staticfloat@gmail.com>, Valder Gallo <valergallo@gmail.com>, Bruno Zell <bruno.zzell@gmail.com>"
+LABEL maintainer="<ayoube.eddakhly@mail.com>"
 
 VOLUME /etc/letsencrypt
 EXPOSE 80
@@ -27,6 +27,7 @@ RUN mkdir -p /scripts/startup
 # certbot, or redirects to HTTPS, but has no HTTPS configurations by default).
 RUN rm -f /etc/nginx/conf.d/*
 COPY nginx_conf.d/ /etc/nginx/conf.d/
+RUN /scripts/generate_config_files.sh
 
 ENTRYPOINT []
 CMD ["/bin/bash", "/scripts/entrypoint.sh"]

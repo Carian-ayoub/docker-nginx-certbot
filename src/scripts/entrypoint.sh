@@ -38,6 +38,7 @@ while [ true ]; do
     # Run certbot, tell nginx to reload its config
     echo "Run certbot"
     /scripts/run_certbot.sh
+    sleep 30
     kill -HUP $NGINX_PID
 
     # Sleep for 1 week

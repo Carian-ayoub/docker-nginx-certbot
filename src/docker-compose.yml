@@ -1,0 +1,16 @@
+version: '3'
+services:
+    frontend:
+        restart: unless-stopped
+        image: shadowbluff/docker-nginx-certbot
+        ports:
+            - 80:80/tcp
+            - 443:443/tcp
+        environment:
+            CERTBOT_EMAIL: nicolas.soenen@carians.fr
+            PLATFORMS: search api 
+            STAGES: staging preprod 
+        volumes:
+          - letsencrypt:/etc/letsencrypt
+volumes:
+    letsencrypt:

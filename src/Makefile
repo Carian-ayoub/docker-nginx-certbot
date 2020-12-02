@@ -2,15 +2,10 @@
 $(warning $(shell IMAGE_NAME=$(IMAGE_NAME) printenv | grep IMAGE_NAME))
 ifndef IMAGE_NAME
 	#$(warning IMAGE_NAME is not set)
-	IMAGE_NAME=nginx-certbot
+	IMAGE_NAME=nginx-certbot-carians
 endif
 
-# If we have `--squash` support, then use it!
-ifneq ($(shell docker build --help 2>/dev/null | grep squash),)
-DOCKER_BUILD = docker build --squash
-else
-DOCKER_BUILD = docker build
-endif
+DOCKER_BUILD = sudo docker build 
 
 all: build
 
@@ -19,4 +14,4 @@ build: Makefile Dockerfile
 	@echo "Done!  Use docker run $(IMAGE_NAME) to run"
 
 push:
-	docker push $(IMAGE_NAME)
+	sudo docker push $(IMAGE_NAME) 
